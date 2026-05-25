@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bar Specs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #111114;
+    --surface2: #18181d;
+    --border: #2a2a32;
+    --accent: #c8a96e;
+    --accent2: #e8c88a;
+    --text: #e8e4dc;
+    --text-muted: #6b6870;
+    --text-dim: #9994a0;
+    --danger: #e05c5c;
+    --success: #5ead7a;
+    --non-alc: #5e9ead;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    height: 100vh;
+    max-width: 540px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 20px 20px 0;
+    flex-shrink: 0;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .stats {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 14px 44px 14px 42px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    caret-color: var(--accent);
+  }
+
+  .search-input::placeholder { color: var(--text-muted); }
+
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--border);
+    border: none;
+    color: var(--text-dim);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .clear-btn.visible { display: flex; }
+  .clear-btn:active { background: var(--accent); color: var(--bg); }
+
+  /* ── FILTER TABS ── */
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 14px;
+    flex-shrink: 0;
+  }
+
+  .tab {
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    font-weight: 500;
+  }
+
+  .tab:active { transform: scale(0.96); }
+
+  /* ── RESULTS LIST ── */
+  .results-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 16px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .results-container::-webkit-scrollbar { width: 3px; }
+  .results-container::-webkit-scrollbar-track { background: transparent; }
+  .results-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .result-count {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0 4px 10px;
+  }
+
+  .cocktail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    gap: 12px;
+    animation: slideIn 0.2s ease both;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cocktail-item:active {
+    transform: scale(0.98);
+    background: var(--surface2);
+    border-color: var(--accent);
+  }
+
+  .cocktail-item-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cocktail-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.5px;
+  }
+
+  .cocktail-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .meta-pill.method { color: var(--text-dim); }
+
+  .category-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .badge-alc {
+    background: rgba(200,169,110,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(200,169,110,0.25);
+  }
+
+  .badge-non {
+    background: rgba(94,158,173,0.12);
+    color: var(--non-alc);
+    border: 1px solid rgba(94,158,173,0.25);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    display: none;
+  }
+
+  .empty-state.visible { display: block; }
+
+  .empty-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+  }
+
+  .empty-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .empty-text { font-size: 12px; line-height: 1.6; }
+
+  /* ── SPEC CARD OVERLAY ── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+
+  .overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .spec-card {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: 24px 24px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    max-height: 92dvh;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow: hidden;
+  }
+
+  .overlay.open .spec-card {
+    transform: translateY(0);
+  }
+
+  .spec-drag-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 14px auto 0;
+    flex-shrink: 0;
+  }
+
+  .spec-header {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .spec-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .spec-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .spec-badge {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .spec-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0 20px 40px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .spec-body::-webkit-scrollbar { width: 2px; }
+  .spec-body::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .spec-section {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .spec-section:last-child { border-bottom: none; }
+
+  .spec-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .spec-value {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: 0.3px;
+  }
+
+  .spec-value.accent {
+    color: var(--accent2);
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .ingredient-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ingredient-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .ingredient-amount {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 14px;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  .ingredient-name {
+    color: var(--text);
+  }
+
+  .allergen-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .allergen-tag {
+    background: rgba(224,92,92,0.12);
+    color: var(--danger);
+    border: 1px solid rgba(224,92,92,0.3);
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-dim);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  .close-btn:active { background: var(--border); }
+
+  .spec-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .spec-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .info-cell {}
+
+  .info-cell .spec-label { margin-bottom: 4px; }
+
+  .info-cell .spec-value {
+    font-size: 14px;
+  }
+
+  /* Bottom safe area */
+  .safe-bottom { height: env(safe-area-inset-bottom, 16px); flex-shrink: 0; }
+
+  /* Splash / loading */
+  .loading {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    transition: opacity 0.4s;
+  }
+
+  .loading.hidden { opacity: 0; pointer-events: none; }
+
+  .loading-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 6px;
+    color: var(--accent);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  .loading-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="loading-logo">BAR SPECS</div>
+  <div class="loading-sub">Loading cocktails...</div>
+</div>
+
+<div class="app">
+  <div class="header">
+    <div class="header-top">
+      <span class="logo">BAR SPECS</span>
+      <span class="logo-sub">Bartender Reference</span>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input
+        class="search-input"
+        type="search"
+        id="searchInput"
+        placeholder="Search cocktail..."
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+      >
+      <button class="clear-btn" id="clearBtn" aria-label="Clear">✕</button>
+    </div>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="tab active" data-filter="all">All</button>
+    <button class="tab" data-filter="Alcoholic">Alcoholic</button>
+    <button class="tab" data-filter="Non-alcoholic">Non-alc</button>
+  </div>
+
+  <div class="results-container" id="resultsContainer">
+    <div class="result-count" id="resultCount"></div>
+    <div id="resultsList"></div>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🍹</div>
+      <div class="empty-title">Not Found</div>
+      <div class="empty-text">No cocktail matches your search.<br>Try a different name.</div>
+    </div>
+    <div class="safe-bottom"></div>
+  </div>
+</div>
+
+<!-- SPEC CARD OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="spec-card" id="specCard">
+    <div class="spec-drag-handle"></div>
+    <div class="spec-header">
+      <div class="spec-header-row">
+        <div style="flex:1;min-width:0;">
+          <div class="spec-name" id="specName"></div>
+          <div class="spec-badges" id="specBadges"></div>
+        </div>
+        <button class="close-btn" id="closeBtn">✕</button>
+      </div>
+    </div>
+    <div class="spec-body" id="specBody"></div>
+  </div>
+</div>
+
+<script>
+  let allCocktails = [];
+  let filtered = [];
+  let activeFilter = 'all';
+  let query = '';
+
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  const resultsList = document.getElementById('resultsList');
+  const resultCount = document.getElementById('resultCount');
+  const emptyState = document.getElementById('emptyState');
+  const overlay = document.getElementById('overlay');
+  const specName = document.getElementById('specName');
+  const specBadges = document.getElementById('specBadges');
+  const specBody = document.getElementById('specBody');
+  const stats = document.getElementById('stats');
+  const loading = document.getElementById('loading');
+
+  // Load data
+  fetch('data.json')
+    .then(r => r.json())
+    .then(data => {
+      allCocktails = data.filter(c => c.name && c.name.length > 1 && !c.name.startsWith('ADD-ON'));
+      const alc = allCocktails.filter(c => c.category === 'Alcoholic').length;
+      const non = allCocktails.filter(c => c.category === 'Non-alcoholic').length;
+      stats.textContent = `${allCocktails.length} cocktails  ·  ${alc} alc  ·  ${non} non-alc`;
+      render();
+      setTimeout(() => loading.classList.add('hidden'), 300);
+    })
+    .catch(err => {
+      loading.innerHTML = '<div class="loading-logo" style="font-size:32px;color:#e05c5c">ERROR</div><div class="loading-sub">Could not load data.json</div>';
+      console.error(err);
+    });
+
+  // Filter + search
+  function applyFilter() {
+    const q = query.toLowerCase().trim();
+    filtered = allCocktails.filter(c => {
+      const catOk = activeFilter === 'all' || c.category === activeFilter;
+      const nameOk = !q || c.name.toLowerCase().includes(q);
+      return catOk && nameOk;
+    });
+  }
+
+  function render() {
+    applyFilter();
+    resultsList.innerHTML = '';
+
+    if (filtered.length === 0) {
+      emptyState.classList.add('visible');
+      resultCount.textContent = '';
+      return;
+    }
+
+    emptyState.classList.remove('visible');
+    resultCount.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+
+    const frag = document.createDocumentFragment();
+    filtered.forEach((c, i) => {
+      const item = document.createElement('div');
+      item.className = 'cocktail-item';
+      item.style.animationDelay = `${Math.min(i * 20, 200)}ms`;
+
+      const isAlc = c.category === 'Alcoholic';
+      const method = c.method ? c.method.split(' ')[0] : '';
+      const glass = c.glassware || '';
+
+      item.innerHTML = `
+        <div class="cocktail-item-left">
+          <div class="cocktail-name">${c.name}</div>
+          <div class="cocktail-meta">
+            ${method ? `<span class="meta-pill method">${method}</span>` : ''}
+            ${glass ? `<span class="meta-pill">· ${glass}</span>` : ''}
+            ${c.allergens && c.allergens.length ? `<span class="meta-pill" style="color:#e05c5c99">⚠ allergens</span>` : ''}
+          </div>
+        </div>
+        <span class="category-badge ${isAlc ? 'badge-alc' : 'badge-non'}">${isAlc ? 'ALC' : 'N/A'}</span>
+      `;
+
+      item.addEventListener('click', () => openSpec(c));
+      frag.appendChild(item);
+    });
+
+    resultsList.appendChild(frag);
+  }
+
+  // Search events
+  searchInput.addEventListener('input', () => {
+    query = searchInput.value;
+    clearBtn.classList.toggle('visible', query.length > 0);
+    render();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    query = '';
+    clearBtn.classList.remove('visible');
+    searchInput.focus();
+    render();
+  });
+
+  // Filter tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeFilter = tab.dataset.filter;
+      render();
+    });
+  });
+
+  // Spec card
+  function parseIngredient(str) {
+    // Try to split "50 ML BEEFEATER" → amount="50 ML", name="BEEFEATER"
+    const m = str.match(/^([\d\.\/]+\s*(?:ML|CL|OZ|EA|DASHES?|DROPS?|SPRAY|SPOON|PINCH|TOPPED?|TOP|HANDFUL|DASH)?\s*)(.*)/i);
+    if (m) return { amount: m[1].trim(), name: m[2].trim() };
+    return { amount: '', name: str };
+  }
+
+  function openSpec(c) {
+    specName.textContent = c.name;
+
+    const isAlc = c.category === 'Alcoholic';
+    specBadges.innerHTML = `
+      <span class="spec-badge ${isAlc ? 'badge-alc' : 'badge-non'}">${c.category}</span>
+    `;
+
+    let html = '';
+
+    // Info grid: method, glassware, ice, garnish
+    const infoItems = [
+      { label: 'Method', value: c.method },
+      { label: 'Glassware', value: c.glassware },
+      { label: 'Ice', value: c.ice },
+      { label: 'Garnish', value: c.garnish },
+    ].filter(i => i.value);
+
+    if (infoItems.length) {
+      html += '<div class="spec-info-grid">';
+      infoItems.forEach(item => {
+        html += `
+          <div class="info-cell">
+            <div class="spec-label">${item.label}</div>
+            <div class="spec-value">${item.value}</div>
+          </div>`;
+      });
+      html += '</div>';
+    }
+
+    // Ingredients
+    if (c.ingredients && c.ingredients.length) {
+      html += `
+        <div class="spec-section">
+          <div class="spec-label">Ingredients</div>
+          <ul class="ingredient-list">`;
+      c.ingredients.forEach(ing => {
+        const { amount, name } = parseIngredient(ing);
+        html += `
+            <li class="ingredient-item">
+              <span class="ingredient-amount">${amount}</span>
+              <span class="ingredient-name">${name}</span>
+            </li>`;
+      });
+      html += `</ul></div>`;
+    }
+
+    // Allergens
+    if (c.allergens && c.allergens.length) {
+      html += `
+        <div class="spec-section">
+          <div class="spec-label">⚠ Allergens</div>
+          <div class="allergen-list">`;
+      c.allergens.forEach(a => {
+        html += `<span class="allergen-tag">${a}</span>`;
+      });
+      html += `</div></div>`;
+    }
+
+    specBody.innerHTML = html;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSpec() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('closeBtn').addEventListener('click', closeSpec);
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeSpec();
+  });
+
+  // Swipe down to close
+  let startY = 0;
+  const specCard = document.getElementById('specCard');
+
+  specCard.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  specCard.addEventListener('touchend', e => {
+    const dy = e.changedTouches[0].clientY - startY;
+    if (dy > 80) closeSpec();
+  }, { passive: true });
+
+  // Keyboard close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSpec();
+  });
+</script>
+</body>
+</html>
