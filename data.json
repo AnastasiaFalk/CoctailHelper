@@ -152,6 +152,21 @@
     ]
   },
   {
+    "name": "APPLE 'N' PEAR",
+    "category": "Alcoholic",
+    "ingredients": [
+      "25 ML SASSY CALVADOS",
+      "20 ML ABSOLUT BLUE",
+      "15 ML BRIOTTET POIRE W.",
+      "30 ML APPLE JUICE"
+    ],
+    "method": "SHAKE ALL AND DOUBLE STRAIN",
+    "glassware": "COUPETTE",
+    "ice": null,
+    "garnish": "DRY APPLE",
+    "allergens": []
+  },
+  {
     "name": "APPLE & CHILLI",
     "category": "Alcoholic",
     "ingredients": [
@@ -201,21 +216,6 @@
     "allergens": [
       "CITRUS"
     ]
-  },
-  {
-    "name": "APPLE 'N' PEAR",
-    "category": "Alcoholic",
-    "ingredients": [
-      "25 ML SASSY CALVADOS",
-      "20 ML ABSOLUT BLUE",
-      "15 ML BRIOTTET POIRE W.",
-      "30 ML APPLE JUICE"
-    ],
-    "method": "SHAKE ALL AND DOUBLE STRAIN",
-    "glassware": "COUPETTE",
-    "ice": null,
-    "garnish": "DRY APPLE",
-    "allergens": []
   },
   {
     "name": "APPLE DAIQUIRI",
@@ -780,7 +780,7 @@
       "50 ML GIN",
       "25 ML LEMON JUICE",
       "15 ML SUGAR SYRUP",
-      "15 ML CRÈME DE MURE"
+      "15 ML CRÃME DE MURE"
     ],
     "method": "SHAKE AND TOP",
     "glassware": "ROCK",
@@ -1627,7 +1627,7 @@
     "ingredients": [
       "50 ML OLMECA BLANCO",
       "25 ML LIME JUICE",
-      "15 ML CRÈME DE CASSIS",
+      "15 ML CRÃME DE CASSIS",
       "1 TOP GINGER ALE"
     ],
     "method": "SHAKE, STRAIN, TOP",
@@ -2804,7 +2804,7 @@
     "ingredients": [
       "100 ML CHAMPAGNE",
       "45 ML FAIR QUINOA",
-      "15 ML CRÈME DE CASSIS"
+      "15 ML CRÃME DE CASSIS"
     ],
     "method": "STIR IN MIXING GLASS, TOP WITH CHAMPAGNE",
     "glassware": "LONG FLUTE",
@@ -4031,7 +4031,7 @@
       "20 ML COINTREAU",
       "15 ML LIME JUICE",
       "75 ML ORANGE JUICE",
-      "5 ML CRÈME DE CASSIS",
+      "5 ML CRÃME DE CASSIS",
       "5 ML GRENADINE"
     ],
     "method": "SHAKE INGREDIENTS, TOP, ADD CRUSHED ICE, FLOAT",
@@ -4224,7 +4224,7 @@
       "10 EA MINT LEAVES"
     ],
     "method": "SHAKE AND STRAIN",
-    "glassware": "CAFÉ ROCK / CLUB WATER GLS",
+    "glassware": "CAFÃ ROCK / CLUB WATER GLS",
     "ice": "CRUSHED ICE",
     "garnish": "MINT SPRING",
     "allergens": [
@@ -4739,6 +4739,21 @@
     ]
   },
   {
+    "name": "TEST",
+    "category": "Alcoholic",
+    "ingredients": [
+      "50 GIN"
+    ],
+    "method": "TEST",
+    "glassware": "TEST",
+    "ice": "CUBED",
+    "garnish": "ORANGE PEEL",
+    "allergens": [
+      "DAIRY",
+      "CHILLI"
+    ]
+  },
+  {
     "name": "THE CINNAPPLE",
     "category": "Non-alcoholic",
     "ingredients": [
@@ -4775,7 +4790,7 @@
     "ingredients": [
       "40 ML KOKO KANU",
       "20 ML HAVANA 7",
-      "30 ML CRÈME DE CACAO",
+      "30 ML CRÃME DE CACAO",
       "15 ML LEMON JUICE",
       "1 EA EGG WHITE"
     ],
