@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bar Specs — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #111114;
+    --surface2: #18181d;
+    --border: #2a2a32;
+    --accent: #c8a96e;
+    --accent2: #e8c88a;
+    --text: #e8e4dc;
+    --text-muted: #6b6870;
+    --text-dim: #9994a0;
+    --danger: #e05c5c;
+    --success: #5ead7a;
+    --non-alc: #5e9ead;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── LOCK SCREEN ── */
+  .lock-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 32px;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .lock-screen.hidden {
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+  }
+
+  .lock-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .lock-sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  .lock-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+    animation: lockPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes lockPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .lock-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    align-self: flex-start;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .lock-input-wrap {
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .lock-input {
+    width: 100%;
+    padding: 16px 48px 16px 18px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    caret-color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .lock-input::placeholder { color: var(--text-muted); letter-spacing: 1px; }
+  .lock-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,169,110,0.12); }
+  .lock-input.error { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(224,92,92,0.12); animation: shake 0.35s ease; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+
+  .eye-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    transition: color 0.15s;
+  }
+  .eye-btn:hover { color: var(--text-dim); }
+
+  .lock-error {
+    font-size: 11px;
+    color: var(--danger);
+    letter-spacing: 0.8px;
+    height: 16px;
+    margin-bottom: 6px;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .lock-hint {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.8px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 320px;
+    margin-top: 12px;
+  }
+
+  .lock-hint a { color: var(--accent); text-decoration: none; }
+  .lock-hint a:hover { text-decoration: underline; }
+
+  /* ── ADMIN APP ── */
+  .admin-app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    opacity: 0;
+    transition: opacity 0.4s 0.1s;
+  }
+
+  .admin-app.visible { opacity: 1; }
+
+  .admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--accent); }
+  .admin-sub { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+
+  .admin-actions { display: flex; gap: 10px; align-items: center; }
+
+  .btn-ghost {
+    padding: 8px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── SECTION HEADER ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .section-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* ── FORM ── */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-card-title {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group:last-child { margin-bottom: 0; }
+
+  .form-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .form-label .required { color: var(--accent); margin-left: 3px; }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    caret-color: var(--accent);
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.10);
+  }
+
+  .form-input.invalid, .form-textarea.invalid {
+    border-color: var(--danger);
+  }
+
+  .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6870' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .form-select option { background: #18181d; }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+  }
+
+  /* ── INGREDIENTS BUILDER ── */
+  .ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ingredient-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    animation: slideIn 0.2s ease both;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ing-amount {
+    width: 110px;
+    flex-shrink: 0;
+  }
+
+  .ing-name { flex: 1; }
+
+  .ing-remove {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .ing-remove:hover { background: rgba(224,92,92,0.12); border-color: var(--danger); color: var(--danger); }
+
+  .btn-add-ingredient {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: transparent;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-add-ingredient:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── ALLERGEN CHECKBOXES ── */
+  .allergen-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .allergen-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .allergen-chip input[type=checkbox] { display: none; }
+
+  .allergen-chip.checked {
+    background: rgba(224,92,92,0.12);
+    border-color: rgba(224,92,92,0.5);
+    color: var(--danger);
+  }
+
+  .allergen-custom-wrap {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  /* ── SUBMIT / STATUS ── */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 14px 28px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--bg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .btn-reset {
+    padding: 14px 20px;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-reset:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* ── STATUS TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 22px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  .toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .toast.success { border-color: var(--success); color: var(--success); }
+  .toast.error { border-color: var(--danger); color: var(--danger); }
+  .toast.info { border-color: var(--accent); color: var(--accent); }
+
+  /* ── SPINNER ── */
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(10,10,12,0.3);
+    border-top-color: var(--bg);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── COCKTAIL LIST (existing) ── */
+  .cocktail-list-section {
+    margin-top: 36px;
+  }
+
+  .cocktail-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .cocktail-count-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .cocktail-admin-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    gap: 12px;
+    transition: border-color 0.15s;
+  }
+
+  .cocktail-admin-item:hover { border-color: rgba(200,169,110,0.3); }
+
+  .cocktail-admin-name {
+    font-size: 13px;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cocktail-admin-cat {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .badge-alc { background: rgba(200,169,110,0.12); color: var(--accent); border: 1px solid rgba(200,169,110,0.25); }
+  .badge-non { background: rgba(94,158,173,0.12); color: var(--non-alc); border: 1px solid rgba(94,158,173,0.25); }
+
+  .btn-delete {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    padding: 0;
+  }
+
+  .btn-delete:hover { background: rgba(224,92,92,0.12); border-color: rgba(224,92,92,0.4); color: var(--danger); }
+
+  /* ── CONFIG CARD ── */
+  .config-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .config-toggle:hover { color: var(--accent); }
+  .config-arrow { transition: transform 0.2s; }
+  .config-toggle.open .config-arrow { transform: rotate(90deg); }
+
+  .config-body {
+    display: none;
+    padding-top: 4px;
+  }
+  .config-body.open { display: block; }
+
+  .config-help {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    background: var(--surface2);
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent);
+  }
+
+  .config-help code {
+    background: rgba(200,169,110,0.1);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  .config-help a { color: var(--accent); }
+
+  .config-status {
+    font-size: 11px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .config-status.ok { background: rgba(94,173,122,0.1); color: var(--success); border: 1px solid rgba(94,173,122,0.3); }
+  .config-status.bad { background: rgba(224,92,92,0.1); color: var(--danger); border: 1px solid rgba(224,92,92,0.3); }
+
+  .search-admin-wrap {
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .search-admin {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    caret-color: var(--accent);
+    transition: border-color 0.2s;
+  }
+
+  .search-admin:focus { border-color: var(--accent); }
+  .search-admin::placeholder { color: var(--text-muted); }
+
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; }
+    .admin-app { padding: 20px 16px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── LOCK SCREEN ── -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-logo">BAR SPECS</div>
+  <div class="lock-sub">Manager Access</div>
+  <div class="lock-icon">🔐</div>
+
+  <div class="lock-label">GitHub Token</div>
+  <div class="lock-input-wrap">
+    <input
+      class="lock-input"
+      type="password"
+      id="tokenInput"
+      placeholder="ghp_xxxxxxxxxxxx"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+    >
+    <button class="eye-btn" id="eyeBtn" title="Show/hide">👁</button>
+  </div>
+  <div class="lock-error" id="lockError"></div>
+
+  <button class="btn-primary" id="unlockBtn" style="width:100%;max-width:360px;font-size:16px;padding:16px;">
+    UNLOCK
+  </button>
+
+  <div class="lock-hint">
+    Введіть GitHub Personal Access Token з правами <code style="background:rgba(200,169,110,0.1);color:#c8a96e;padding:2px 6px;border-radius:4px;font-size:10px;">repo</code>.<br>
+    Токен генерується в <a href="https://github.com/settings/tokens" target="_blank">GitHub → Settings → Tokens</a>.<br>
+    Бармени бачать лише читання — без цього токена зміни неможливі.
+  </div>
+</div>
+
+<!-- ── ADMIN APP ── -->
+<div class="admin-app" id="adminApp">
+
+  <div class="admin-header">
+    <div>
+      <div class="admin-logo">BAR SPECS</div>
+      <div class="admin-sub">Admin Panel · Falkovska</div>
+    </div>
+    <div class="admin-actions">
+      <a href="index.html" class="btn-ghost">← Back</a>
+      <button class="btn-ghost" id="logoutBtn">Lock 🔒</button>
+    </div>
+  </div>
+
+  <!-- ── GITHUB CONFIG ── -->
+  <div class="form-card" style="margin-bottom:28px;">
+    <div class="config-toggle" id="configToggle">
+      <span class="config-arrow">▶</span>
+      <span>GitHub Repository Config</span>
+      <span id="configStatusDot" style="margin-left:auto;font-size:16px;">⚪</span>
+    </div>
+    <div class="config-body" id="configBody">
+      <div class="config-help">
+        Вкажіть ваш репозиторій, щоб зміни зберігалися напряму в <code>data.json</code> через GitHub API.<br><br>
+        <strong>Owner</strong> — ваш GitHub username або організація.<br>
+        <strong>Repo</strong> — назва репозиторію (наприклад <code>CoctailHelper</code>).<br>
+        <strong>Branch</strong> — зазвичай <code>main</code> або <code>gh-pages</code>.<br>
+        <strong>Path</strong> — шлях до файлу в репо, зазвичай <code>data.json</code>.<br><br>
+        Ці налаштування зберігаються лише у вашому браузері (localStorage).
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Owner <span class="required">*</span></label>
+          <input class="form-input" id="cfgOwner" placeholder="your-username">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Repository <span class="required">*</span></label>
+          <input class="form-input" id="cfgRepo" placeholder="CoctailHelper">
+        </div>
+      </div>
+      <div class="form-row" style="margin-top:12px;">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Branch</label>
+          <input class="form-input" id="cfgBranch" placeholder="main">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">File path</label>
+          <input class="form-input" id="cfgPath" placeholder="data.json">
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center;">
+        <button class="btn-primary" id="saveConfigBtn" style="font-size:14px;padding:10px 20px;letter-spacing:1px;">
+          SAVE CONFIG
+        </button>
+        <button class="btn-ghost" id="testConfigBtn">Test Connection</button>
+      </div>
+      <div id="configStatusMsg" class="config-status" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- ── ADD COCKTAIL FORM ── -->
+  <div class="section-title">Add New Cocktail</div>
+  <div class="section-desc">Заповніть форму — коктейль буде збережено напряму в data.json вашого репозиторію.</div>
+
+  <form id="addForm" novalidate>
+
+    <!-- Basic info -->
+    <div class="form-card">
+      <div class="form-card-title">Basic Info</div>
+
+      <div class="form-group">
+        <label class="form-label" for="fName">Name <span class="required">*</span></label>
+        <input class="form-input" id="fName" type="text" placeholder="ESPRESSO MARTINI" autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="fCategory">Category <span class="required">*</span></label>
+          <select class="form-select" id="fCategory">
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Non-alcoholic">Non-alcoholic</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="fGlassware">Glassware</label>
+          <input class="form-input" id="fGlassware" type="text" placeholder="MARTINI" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <!-- Method & details -->
+    <div class="form-card">
+      <div class="form-card-title">Method & Service</div>
+
+      <div class="form-group">
+        <label class="form-label" for="fMethod">Method</label>
+        <input class="form-input" id="fMethod" type="text" placeholder="SHAKE ALL AND FINE STRAIN" autocomplete="off">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="fIce">Ice</label>
+          <input class="form-input" id="fIce" type="text" placeholder="CUBED / CRUSHED / null" autocomplete="off">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="fGarnish">Garnish</label>
+          <input class="form-input" id="fGarnish" type="text" placeholder="3 ESPRESSO BEANS" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="form-card">
+      <div class="form-card-title">Ingredients <span class="required">*</span></div>
+
+      <div class="ingredients-list" id="ingredientsList"></div>
+
+      <button type="button" class="btn-add-ingredient" id="addIngredientBtn">
+        <span>+</span> Add Ingredient
+      </button>
+    </div>
+
+    <!-- Allergens -->
+    <div class="form-card">
+      <div class="form-card-title">Allergens</div>
+      <div class="allergen-grid" id="allergenGrid">
+        <!-- chips inserted by JS -->
+      </div>
+      <div class="allergen-custom-wrap">
+        <input class="form-input" id="customAllergen" type="text" placeholder="Custom allergen..." autocomplete="off" style="flex:1;">
+        <button type="button" class="btn-ghost" id="addCustomAllergenBtn">Add</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <button type="submit" class="btn-primary" id="submitBtn">SAVE TO DATABASE</button>
+      <button type="button" class="btn-reset" id="resetBtn">Reset Form</button>
+      <div id="submitStatus" style="font-size:12px;color:var(--text-muted);flex:1;text-align:right;"></div>
+    </div>
+
+  </form>
+
+  <!-- ── EXISTING COCKTAILS ── -->
+  <div class="cocktail-list-section">
+    <div class="cocktail-list-header">
+      <div class="section-title" style="margin-bottom:0">Cocktail Database</div>
+      <span class="cocktail-count-badge" id="dbCount">— cocktails</span>
+    </div>
+
+    <div class="search-admin-wrap">
+      <input class="search-admin" id="searchAdmin" type="search" placeholder="Filter cocktails..." autocomplete="off">
+    </div>
+
+    <div id="cocktailAdminList"></div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let githubToken = '';
+let allCocktails = [];
+const ALLERGEN_OPTIONS = ['CITRUS', 'EGG', 'DAIRY', 'NUTS', 'GLUTEN', 'SULPHATES', 'SULPHITES', 'COFFEE', 'CELERY', 'MUSTARD', 'FISH', 'SOYA', 'CORN', 'CHILLI'];
+
+// ═══════════════════════════════════════════════
+// CONFIG (localStorage)
+// ═══════════════════════════════════════════════
+function getConfig() {
+  return {
+    owner: localStorage.getItem('bs_owner') || '',
+    repo:  localStorage.getItem('bs_repo')  || '',
+    branch: localStorage.getItem('bs_branch') || 'main',
+    path:  localStorage.getItem('bs_path')  || 'data.json',
+  };
+}
+
+function saveConfig() {
+  localStorage.setItem('bs_owner',  document.getElementById('cfgOwner').value.trim());
+  localStorage.setItem('bs_repo',   document.getElementById('cfgRepo').value.trim());
+  localStorage.setItem('bs_branch', document.getElementById('cfgBranch').value.trim() || 'main');
+  localStorage.setItem('bs_path',   document.getElementById('cfgPath').value.trim() || 'data.json');
+}
+
+function loadConfigUI() {
+  const c = getConfig();
+  document.getElementById('cfgOwner').value  = c.owner;
+  document.getElementById('cfgRepo').value   = c.repo;
+  document.getElementById('cfgBranch').value = c.branch;
+  document.getElementById('cfgPath').value   = c.path;
+  updateConfigDot();
+}
+
+function updateConfigDot() {
+  const c = getConfig();
+  document.getElementById('configStatusDot').textContent = (c.owner && c.repo) ? '🟢' : '🔴';
+}
+
+document.getElementById('configToggle').addEventListener('click', () => {
+  const t = document.getElementById('configToggle');
+  const b = document.getElementById('configBody');
+  t.classList.toggle('open');
+  b.classList.toggle('open');
+});
+
+document.getElementById('saveConfigBtn').addEventListener('click', () => {
+  saveConfig();
+  updateConfigDot();
+  showToast('Config saved', 'success');
+});
+
+document.getElementById('testConfigBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('testConfigBtn');
+  const msg = document.getElementById('configStatusMsg');
+  const c = getConfig();
+
+  if (!c.owner || !c.repo) {
+    msg.style.display = 'block';
+    msg.className = 'config-status bad';
+    msg.textContent = '✗ Fill in Owner and Repository first.';
+    return;
+  }
+
+  if (!githubToken) {
+    msg.style.display = 'block';
+    msg.className = 'config-status bad';
+    msg.textContent = '✗ No token found. Log out and log in again.';
+    return;
+  }
+
+  btn.textContent = 'Testing…';
+  btn.disabled = true;
+
+  try {
+    const url = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${c.path}?ref=${c.branch}`;
+    const res = await fetch(url, {
+      headers: { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github.v3+json' }
+    });
+
+    if (res.status === 200) {
+      const data = await res.json();
+      const bytes = Math.round(atob(data.content.replace(/\n/g,'')).length / 1024);
+      msg.style.display = 'block';
+      msg.className = 'config-status ok';
+      msg.textContent = `✓ Connected! File found · ~${bytes} KB · SHA: ${data.sha.slice(0,8)}…`;
+    } else if (res.status === 404) {
+      msg.style.display = 'block';
+      msg.className = 'config-status bad';
+      msg.textContent = `✗ File not found. Check owner/repo/branch/path.`;
+    } else if (res.status === 401) {
+      msg.style.display = 'block';
+      msg.className = 'config-status bad';
+      msg.textContent = `✗ Token rejected (401). Check permissions.`;
+    } else {
+      msg.style.display = 'block';
+      msg.className = 'config-status bad';
+      msg.textContent = `✗ GitHub API error: ${res.status}`;
+    }
+  } catch (e) {
+    msg.style.display = 'block';
+    msg.className = 'config-status bad';
+    msg.textContent = `✗ Network error: ${e.message}`;
+  }
+
+  btn.textContent = 'Test Connection';
+  btn.disabled = false;
+});
+
+// ═══════════════════════════════════════════════
+// LOCK / UNLOCK
+// ═══════════════════════════════════════════════
+const lockScreen  = document.getElementById('lockScreen');
+const adminApp    = document.getElementById('adminApp');
+const tokenInput  = document.getElementById('tokenInput');
+const lockError   = document.getElementById('lockError');
+const unlockBtn   = document.getElementById('unlockBtn');
+
+document.getElementById('eyeBtn').addEventListener('click', () => {
+  tokenInput.type = tokenInput.type === 'password' ? 'text' : 'password';
+});
+
+async function tryUnlock() {
+  const token = tokenInput.value.trim();
+  lockError.textContent = '';
+
+  if (!token) {
+    lockError.textContent = 'Please enter a token.';
+    tokenInput.classList.add('error');
+    setTimeout(() => tokenInput.classList.remove('error'), 400);
+    return;
+  }
+
+  // Basic format check
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_') && token.length < 20) {
+    lockError.textContent = 'Invalid token format.';
+    tokenInput.classList.add('error');
+    setTimeout(() => tokenInput.classList.remove('error'), 400);
+    return;
+  }
+
+  unlockBtn.disabled = true;
+  unlockBtn.innerHTML = '<span class="spinner"></span>Verifying…';
+
+  // Verify token with GitHub API
+  try {
+    const res = await fetch('https://api.github.com/user', {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+
+    if (res.status === 200) {
+      const user = await res.json();
+      githubToken = token;
+      sessionStorage.setItem('bs_token', token);
+      unlock(user.login);
+    } else {
+      lockError.textContent = 'Invalid token or no GitHub access.';
+      tokenInput.classList.add('error');
+      setTimeout(() => tokenInput.classList.remove('error'), 400);
+      unlockBtn.disabled = false;
+      unlockBtn.textContent = 'UNLOCK';
+    }
+  } catch(e) {
+    lockError.textContent = 'Network error. Check your connection.';
+    unlockBtn.disabled = false;
+    unlockBtn.textContent = 'UNLOCK';
+  }
+}
+
+function unlock(username) {
+  lockScreen.classList.add('hidden');
+  adminApp.classList.add('visible');
+  document.querySelector('.admin-sub').textContent = `Admin Panel · ${username}`;
+  initAdmin();
+}
+
+unlockBtn.addEventListener('click', tryUnlock);
+tokenInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('bs_token');
+  githubToken = '';
+  tokenInput.value = '';
+  lockError.textContent = '';
+  adminApp.classList.remove('visible');
+  lockScreen.classList.remove('hidden');
+});
+
+// Auto-restore session token
+(function() {
+  const saved = sessionStorage.getItem('bs_token');
+  if (saved) {
+    tokenInput.value = saved;
+    tryUnlock();
+  }
+})();
+
+// ═══════════════════════════════════════════════
+// INIT ADMIN
+// ═══════════════════════════════════════════════
+function initAdmin() {
+  loadConfigUI();
+  buildAllergenGrid();
+  addIngredientRow();
+  loadCocktails();
+}
+
+// ═══════════════════════════════════════════════
+// LOAD COCKTAILS FROM GITHUB (or local)
+// ═══════════════════════════════════════════════
+async function loadCocktails() {
+  try {
+    const c = getConfig();
+    if (c.owner && c.repo && githubToken) {
+      const url = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${c.path}?ref=${c.branch}&t=${Date.now()}`;
+      const res = await fetch(url, {
+        headers: { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (res.ok) {
+        const file = await res.json();
+        allCocktails = JSON.parse(atob(file.content.replace(/\n/g,'')));
+        renderCocktailList();
+        return;
+      }
+    }
+    // Fallback: local fetch
+    const res = await fetch('data.json?t=' + Date.now());
+    allCocktails = await res.json();
+    renderCocktailList();
+  } catch(e) {
+    console.warn('Could not load cocktails:', e);
+  }
+}
+
+function renderCocktailList(filter = '') {
+  const list = document.getElementById('cocktailAdminList');
+  const q = filter.toLowerCase().trim();
+  const visible = allCocktails.filter(c =>
+    c.name && c.name.length > 1 && (!q || c.name.toLowerCase().includes(q))
+  );
+
+  document.getElementById('dbCount').textContent = `${allCocktails.length} cocktails`;
+
+  if (visible.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);font-size:12px;">No cocktails found</div>';
+    return;
+  }
+
+  list.innerHTML = '';
+  const frag = document.createDocumentFragment();
+  visible.forEach(c => {
+    const isAlc = c.category === 'Alcoholic';
+    const div = document.createElement('div');
+    div.className = 'cocktail-admin-item';
+    div.innerHTML = `
+      <span class="cocktail-admin-name">${c.name}</span>
+      <span class="cocktail-admin-cat ${isAlc ? 'badge-alc' : 'badge-non'}">${isAlc ? 'ALC' : 'N/A'}</span>
+      <button class="btn-delete" title="Delete" data-name="${c.name.replace(/"/g,'&quot;')}">✕</button>
+    `;
+    frag.appendChild(div);
+  });
+  list.appendChild(frag);
+
+  list.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', () => deleteByName(btn.dataset.name));
+  });
+}
+
+document.getElementById('searchAdmin').addEventListener('input', e => {
+  renderCocktailList(e.target.value);
+});
+
+// ═══════════════════════════════════════════════
+// INGREDIENTS
+// ═══════════════════════════════════════════════
+function addIngredientRow(amount = '', name = '') {
+  const list = document.getElementById('ingredientsList');
+  const row = document.createElement('div');
+  row.className = 'ingredient-row';
+  row.innerHTML = `
+    <input class="form-input ing-amount" type="text" placeholder="50 ML" value="${amount}" autocomplete="off">
+    <input class="form-input ing-name" type="text" placeholder="BEEFEATER GIN" value="${name}" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button type="button" class="ing-remove" title="Remove">✕</button>
+  `;
+  row.querySelector('.ing-remove').addEventListener('click', () => {
+    if (document.querySelectorAll('.ingredient-row').length > 1) {
+      row.remove();
+    }
+  });
+  list.appendChild(row);
+}
+
+document.getElementById('addIngredientBtn').addEventListener('click', () => addIngredientRow());
+
+function getIngredients() {
+  const rows = document.querySelectorAll('.ingredient-row');
+  const result = [];
+  rows.forEach(row => {
+    const amount = row.querySelector('.ing-amount').value.trim().toUpperCase();
+    const name   = row.querySelector('.ing-name').value.trim().toUpperCase();
+    if (name) result.push(amount ? `${amount} ${name}` : name);
+  });
+  return result;
+}
+
+// ═══════════════════════════════════════════════
+// ALLERGENS
+// ═══════════════════════════════════════════════
+const selectedAllergens = new Set();
+
+function buildAllergenGrid() {
+  const grid = document.getElementById('allergenGrid');
+  grid.innerHTML = '';
+  ALLERGEN_OPTIONS.forEach(a => {
+    const chip = document.createElement('label');
+    chip.className = 'allergen-chip';
+    chip.innerHTML = `<input type="checkbox" value="${a}"> ${a}`;
+    chip.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) { selectedAllergens.add(a); chip.classList.add('checked'); }
+      else { selectedAllergens.delete(a); chip.classList.remove('checked'); }
+    });
+    grid.appendChild(chip);
+  });
+}
+
+document.getElementById('addCustomAllergenBtn').addEventListener('click', () => {
+  const input = document.getElementById('customAllergen');
+  const val = input.value.trim().toUpperCase();
+  if (!val) return;
+  if (selectedAllergens.has(val)) { input.value = ''; return; }
+
+  const grid = document.getElementById('allergenGrid');
+  const chip = document.createElement('label');
+  chip.className = 'allergen-chip checked';
+  chip.innerHTML = `<input type="checkbox" value="${val}" checked> ${val}`;
+  chip.querySelector('input').addEventListener('change', e => {
+    if (e.target.checked) { selectedAllergens.add(val); chip.classList.add('checked'); }
+    else { selectedAllergens.delete(val); chip.classList.remove('checked'); chip.remove(); }
+  });
+  selectedAllergens.add(val);
+  grid.appendChild(chip);
+  input.value = '';
+});
+
+document.getElementById('customAllergen').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('addCustomAllergenBtn').click(); }
+});
+
+// ═══════════════════════════════════════════════
+// FORM SUBMIT → GitHub API
+// ═══════════════════════════════════════════════
+document.getElementById('addForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('fName').value.trim().toUpperCase();
+  const category = document.getElementById('fCategory').value;
+  const glassware = document.getElementById('fGlassware').value.trim().toUpperCase() || null;
+  const method = document.getElementById('fMethod').value.trim().toUpperCase() || null;
+  const iceRaw = document.getElementById('fIce').value.trim().toUpperCase();
+  const ice = iceRaw && iceRaw !== 'NULL' ? iceRaw : null;
+  const garnish = document.getElementById('fGarnish').value.trim().toUpperCase() || null;
+  const ingredients = getIngredients();
+  const allergens = Array.from(selectedAllergens);
+
+  // Validation
+  const nameInput = document.getElementById('fName');
+  if (!name) {
+    nameInput.classList.add('invalid');
+    nameInput.focus();
+    showToast('Name is required', 'error');
+    return;
+  }
+  nameInput.classList.remove('invalid');
+
+  if (ingredients.length === 0) {
+    showToast('Add at least one ingredient', 'error');
+    return;
+  }
+
+  // Check duplicate
+  if (allCocktails.some(c => c.name.toUpperCase() === name)) {
+    showToast(`"${name}" already exists`, 'error');
+    return;
+  }
+
+  const newCocktail = { name, category, ingredients, method, glassware, ice, garnish, allergens };
+
+  const c = getConfig();
+  if (!c.owner || !c.repo) {
+    showToast('Set up GitHub config first', 'error');
+    document.getElementById('configToggle').click();
+    return;
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span>SAVING…';
+
+  try {
+    await pushToGitHub(newCocktail, c);
+    showToast(`✓ "${name}" saved to database!`, 'success');
+    resetForm();
+    await loadCocktails();
+  } catch(err) {
+    showToast(`✗ ${err.message}`, 'error');
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'SAVE TO DATABASE';
+});
+
+async function pushToGitHub(newCocktail, c) {
+  // 1. Get current file (we need the SHA)
+  const getUrl = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${c.path}?ref=${c.branch}`;
+  const getRes = await fetch(getUrl, {
+    headers: { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github.v3+json' }
+  });
+
+  if (!getRes.ok) {
+    const err = await getRes.json().catch(() => ({}));
+    throw new Error(err.message || `GitHub GET error: ${getRes.status}`);
+  }
+
+  const fileData = await getRes.json();
+  const sha = fileData.sha;
+  const currentContent = JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+
+  // 2. Append new cocktail, sort alphabetically
+  currentContent.push(newCocktail);
+  currentContent.sort((a, b) => a.name.localeCompare(b.name));
+
+  // 3. Encode & push
+  const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentContent, null, 2))));
+
+  const putRes = await fetch(getUrl, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${githubToken}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      message: `Add cocktail: ${newCocktail.name}`,
+      content: newContent,
+      sha: sha,
+      branch: c.branch,
+    })
+  });
+
+  if (!putRes.ok) {
+    const err = await putRes.json().catch(() => ({}));
+    throw new Error(err.message || `GitHub PUT error: ${putRes.status}`);
+  }
+
+  allCocktails = currentContent;
+}
+
+// ═══════════════════════════════════════════════
+// DELETE
+// ═══════════════════════════════════════════════
+async function deleteByName(name) {
+  if (!confirm(`Delete "${name}" from the database?`)) return;
+
+  const c = getConfig();
+  if (!c.owner || !c.repo) { showToast('Set up GitHub config first', 'error'); return; }
+
+  try {
+    const getUrl = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${c.path}?ref=${c.branch}`;
+    const getRes = await fetch(getUrl, {
+      headers: { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!getRes.ok) throw new Error(`GitHub error: ${getRes.status}`);
+    const fileData = await getRes.json();
+    const sha = fileData.sha;
+    const current = JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+
+    const updated = current.filter(c => c.name !== name);
+    if (updated.length === current.length) { showToast('Cocktail not found', 'error'); return; }
+
+    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(updated, null, 2))));
+    const putRes = await fetch(getUrl, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${githubToken}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: `Remove cocktail: ${name}`,
+        content: newContent,
+        sha,
+        branch: c.branch,
+      })
+    });
+    if (!putRes.ok) { const err = await putRes.json().catch(()=>({})); throw new Error(err.message); }
+
+    showToast(`✓ "${name}" deleted`, 'success');
+    allCocktails = updated;
+    renderCocktailList(document.getElementById('searchAdmin').value);
+    document.getElementById('dbCount').textContent = `${allCocktails.length} cocktails`;
+  } catch(e) {
+    showToast(`✗ ${e.message}`, 'error');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// RESET FORM
+// ═══════════════════════════════════════════════
+function resetForm() {
+  document.getElementById('fName').value = '';
+  document.getElementById('fCategory').value = 'Alcoholic';
+  document.getElementById('fGlassware').value = '';
+  document.getElementById('fMethod').value = '';
+  document.getElementById('fIce').value = '';
+  document.getElementById('fGarnish').value = '';
+  document.getElementById('ingredientsList').innerHTML = '';
+  addIngredientRow();
+  selectedAllergens.clear();
+  document.querySelectorAll('.allergen-chip').forEach(chip => {
+    chip.classList.remove('checked');
+    if (chip.querySelector('input')) chip.querySelector('input').checked = false;
+  });
+  // remove custom allergen chips
+  document.querySelectorAll('.allergen-chip').forEach(chip => {
+    const val = chip.querySelector('input')?.value;
+    if (val && !ALLERGEN_OPTIONS.includes(val)) chip.remove();
+  });
+  document.getElementById('customAllergen').value = '';
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (confirm('Clear the form?')) resetForm();
+});
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+let toastTimer;
+function showToast(msg, type = 'info') {
+  const t = document.getElementById('toast');
+  clearTimeout(toastTimer);
+  t.textContent = msg;
+  t.className = `toast ${type} visible`;
+  toastTimer = setTimeout(() => t.classList.remove('visible'), 3500);
+}
+</script>
+</body>
+</html>
