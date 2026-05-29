@@ -3150,7 +3150,7 @@
     "name": "NO-GRONI",
     "category": "Non-alcoholic",
     "ingredients": [
-      "25 ML MAHALA SPICED",
+      "25 ML EVERLEAF MOUNTAIN",
       "25 ML LUCANO 0",
       "1 SPOON GRENADINE"
     ],
@@ -4462,20 +4462,6 @@
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": "MINT SPRING",
-    "allergens": []
-  },
-  {
-    "name": "SOFT COCKTAILS - APERTIVO",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "25 ML EVERLEAF MOUNTAIN",
-      "25 ML LUCANO 0",
-      "5 ML GRENADINE"
-    ],
-    "method": "STIR",
-    "glassware": "ROCK",
-    "ice": "CUBED",
-    "garnish": "ORANGE",
     "allergens": []
   },
   {
