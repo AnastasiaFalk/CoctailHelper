@@ -2983,21 +2983,6 @@
     ]
   },
   {
-    "name": "MOCKTAILS",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "25 ML MONIN ORANGE SPRITZ",
-      "1 TOPPED SODA WATER"
-    ],
-    "method": "BUILD",
-    "glassware": "BALLOON GLASS",
-    "ice": "CUBED",
-    "garnish": "1 FRESH AND 1 DRY ORANGE",
-    "allergens": [
-      "CITRUS"
-    ]
-  },
-  {
     "name": "MOJITO",
     "category": "Alcoholic",
     "ingredients": [
