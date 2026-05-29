@@ -1,17 +1,5 @@
 [
   {
-    "name": "ADD-ON >> ONLY OPTIONAL",
-    "category": "Alcoholic",
-    "ingredients": [
-      "25 ML COKE"
-    ],
-    "method": null,
-    "glassware": null,
-    "ice": null,
-    "garnish": null,
-    "allergens": []
-  },
-  {
     "name": "ADONIS",
     "category": "Alcoholic",
     "ingredients": [
@@ -62,23 +50,6 @@
     ]
   },
   {
-    "name": "AGED NEGRONI (INSTRUCTIONS)",
-    "category": "Alcoholic",
-    "ingredients": [
-      "1 L BEEFEATER 24",
-      "1 L ANTICA FORMULA",
-      "1 L CAMPARI"
-    ],
-    "method": "MIX ALL WITH 8-10 CHARGRILLED OAK STICKS IN GLASS CONTAINER MINIMUM 1 MONTH",
-    "glassware": "ROCK",
-    "ice": "LARGE CUBE",
-    "garnish": "ORANGE PEEL",
-    "allergens": [
-      "CITRUS",
-      "SULPHATES"
-    ]
-  },
-  {
     "name": "ALASKA",
     "category": "Alcoholic",
     "ingredients": [
@@ -97,7 +68,7 @@
   },
   {
     "name": "ALMOND & LEMON SOUR",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML LYRE'S AMARETTI",
       "15 ML LEMON JUICE",
@@ -110,18 +81,6 @@
     "garnish": "LEMON PEEL",
     "allergens": [
       "CITRUS"
-    ]
-  },
-  {
-    "name": "ALSO CALLED COLORADO BULLDOG",
-    "category": "Alcoholic",
-    "ingredients": [],
-    "method": "BUILD AND STIR",
-    "glassware": "ROCK",
-    "ice": "CUBED",
-    "garnish": null,
-    "allergens": [
-      "COFFEE"
     ]
   },
   {
@@ -219,7 +178,7 @@
       "25 ML LIME JUICE",
       "1 TOP SODA WATER"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN, TOP WITH SPARKLING WATER",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "DRY APPLE",
@@ -229,7 +188,7 @@
   },
   {
     "name": "APPLE & SODA",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "30 ML BOTIVO",
       "50 ML APPLE JUICE",
@@ -252,7 +211,7 @@
       "15 ML BRIOTTET POIRE W.",
       "30 ML APPLE JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND DOUBLE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "DRY APPLE",
@@ -268,7 +227,7 @@
       "10 ML MANZANA VERDE",
       "5 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "SHAKE ALL INGREDIENTS AND FINE STRAIN",
     "glassware": "COUPE",
     "ice": null,
     "garnish": "DRY APPLE",
@@ -282,7 +241,7 @@
     "ingredients": [
       "4 EA APPLES"
     ],
-    "method": null,
+    "method": "ALL IN JUICER",
     "glassware": "ROCK",
     "ice": null,
     "garnish": null,
@@ -305,7 +264,7 @@
   },
   {
     "name": "APPLE VIRGIN MOJITO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML APPLE JUICE",
       "3 EA LIME WEDGE",
@@ -400,7 +359,7 @@
       "15 ML CHERRY HEERING",
       "1 DASH ANGOSTURA BITTERS"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "ORANGE PEEL",
@@ -442,8 +401,7 @@
     "ice": "LARGE CUBE",
     "garnish": "BANANA SLICE ON RIM",
     "allergens": [
-      "CITRUS",
-      "EGG"
+      "CITRUS"
     ]
   },
   {
@@ -456,7 +414,7 @@
       "4 EA BASIL LEAFS",
       "5 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "MUDDLE BASIL/SYRUP, SHAKE ALL AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "BASIL LEAF",
@@ -466,7 +424,7 @@
   },
   {
     "name": "BELINO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "100 ML ODDBIRD SPUMENTO",
       "10 ML MONIN PEACH"
@@ -537,7 +495,7 @@
       "30 ML COINTREAU",
       "20 ML LEMON JUICE"
     ],
-    "method": null,
+    "method": "SHAKE AND FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "LEMON TWIST",
@@ -555,7 +513,7 @@
       "15 ML LEMON JUICE",
       "2 DASH SALT"
     ],
-    "method": null,
+    "method": "SHAKE AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "LEMON PEEL",
@@ -587,7 +545,7 @@
       "50 ML ABSOLUT",
       "25 ML KHALUA"
     ],
-    "method": null,
+    "method": "BUILD AND STIR",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -618,7 +576,7 @@
       "15 ML BRIOTTET MURE",
       "40 ML CRANBERRY JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "MARTINI GLASS",
     "ice": null,
     "garnish": "BLACKBERRY ON STICK",
@@ -633,7 +591,7 @@
       "25 ML CHERRY HEERING",
       "25 ML ORANGE JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND DOUBLE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "ORANGE PEEL",
@@ -651,7 +609,7 @@
       "10 ML LIME JUICE",
       "30 ML COINTREAU"
     ],
-    "method": null,
+    "method": "SHAKE ALL, FINE STRAIN",
     "glassware": "ROCK/COUPE",
     "ice": "CUBED/STRAIGHT UP",
     "garnish": "BLOOD ORANGE WHEEL",
@@ -738,7 +696,7 @@
       "1 EA EGG WHITE",
       "10 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "DRY SHAKE, WET SHAKE, DOUBLE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "ORANGE PEEL ON THE RING",
@@ -772,7 +730,7 @@
       "25 ML SWEET VERMOUTH",
       "7.5 ML BENEDICTINE"
     ],
-    "method": null,
+    "method": "STIR AND STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "LEMON TWIST",
@@ -806,7 +764,7 @@
       "25 ML CAMPARI",
       "25 ML SWEET VERMOUTH"
     ],
-    "method": null,
+    "method": "STIR AND STRAIN",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "LEMON TWIST",
@@ -963,7 +921,7 @@
       "15 ML DRY VERMOUTH",
       "10 ML MARASCHINO"
     ],
-    "method": null,
+    "method": "STIR ALL AND DISCARD INTO GLS",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "CHERRY",
@@ -1047,7 +1005,7 @@
       "2 EA WHITE SUGAR CUBE",
       "4 EA LIME WEDGE"
     ],
-    "method": null,
+    "method": "MIX SUGAR AND LIME JUICE, BUILD",
     "glassware": "CLUB WATER GLASS",
     "ice": "CUBED",
     "garnish": "LIME WEDGE",
@@ -1090,7 +1048,7 @@
   },
   {
     "name": "CALENO BLACKBERRY DARK & SPICY DAIQUIRI",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML CALENO DARK & SPICY",
       "25 ML LIME JUICE",
@@ -1124,7 +1082,7 @@
   },
   {
     "name": "CALENO STRAWBERRY DARK & SPICY DAIQUIRI",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML CALENO DARK & SPICY",
       "25 ML LIME JUICE",
@@ -1194,7 +1152,7 @@
     "ingredients": [
       "6 EA CARROTS"
     ],
-    "method": null,
+    "method": "ALL IN JUICER",
     "glassware": "ROCK",
     "ice": null,
     "garnish": null,
@@ -1327,7 +1285,7 @@
       "25 ML COINTREAU",
       "25 ML LIME JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -1341,7 +1299,7 @@
       "25 ML BRIOTTET PASSION FRUIT",
       "25 ML LIME JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -1370,25 +1328,6 @@
       "75 ML CLARIFIED MEZCALITA"
     ],
     "method": "STIR AND DISCARD IN GLASS",
-    "glassware": "ROCK",
-    "ice": "LARGE CUBE",
-    "garnish": "LIME PEEL",
-    "allergens": [
-      "CITRUS",
-      "DAIRY"
-    ]
-  },
-  {
-    "name": "CLARIFIED MEZCALITA (INSTRUCTIONS)",
-    "category": "Alcoholic",
-    "ingredients": [
-      "1 L VIDA MEZCAL",
-      "250 ML COINTREAU",
-      "250 ML LIME JUICE",
-      "50 ML AGAVE SYRUP",
-      "500 ML WHOLE MILK"
-    ],
-    "method": "MIX ALL, ADD IN 250ML MILK WHILST STIRING. LEAVE FOR OVERNIGHT IN FRIDGE , STRAIN USING CHEESECLOTH IN FRIDGE WITH CLOTH DRIPPING INTO BUCKET. REAPEAT PROCESS ONCE MORE. DISTRUBUTE INTO BTLS, SEAL WITH WINE PUMP",
     "glassware": "ROCK",
     "ice": "LARGE CUBE",
     "garnish": "LIME PEEL",
@@ -1490,12 +1429,12 @@
   },
   {
     "name": "CRISP STINGER",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML EVERLEAF MARINE",
       "20 ML LEMON JUICE",
       "20 ML AGAVE SYRUP",
-      "2014-12-01 00:00:00 EA MINT LEAVES"
+      "12 EA MINT LEAVES"
     ],
     "method": "SHAKE ALL, FINE STRAIN",
     "glassware": "COUPETTE/MARTINI",
@@ -1511,7 +1450,7 @@
       "20 ML LIME JUICE",
       "1 EA COKE"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "LIME WEDGE",
@@ -1560,7 +1499,7 @@
       "5 ML GINGER SYRUP",
       "1 TOPPED GINGER BEER"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": "CRUSHED",
     "garnish": "LIME WEDGE",
@@ -1590,7 +1529,7 @@
       "3 EA APPLES",
       "1 EA GINGER"
     ],
-    "method": null,
+    "method": "ALL IN JUICER",
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": null,
@@ -1701,7 +1640,7 @@
   },
   {
     "name": "ELEGANT & MATURE",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML MAHALA SPICED",
       "5 ML HONEY SYRUP",
@@ -1717,7 +1656,7 @@
   },
   {
     "name": "ELEGANT AND MATURE",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML CEDERS",
       "25 ML LUCANO 0",
@@ -1737,7 +1676,7 @@
       "25 ML MARTINI ROSSO",
       "1 DASH ORANGE BITTERS"
     ],
-    "method": null,
+    "method": "STIR AND DISCARD INTO GLS",
     "glassware": "GOBELET",
     "ice": null,
     "garnish": "ORANGE PEEL",
@@ -1779,7 +1718,7 @@
   },
   {
     "name": "FERAGAIA PENICILIN",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML FERAGAIA",
       "5 ML HONEY SYRUP",
@@ -1837,7 +1776,7 @@
       "5 ML GRENADINE",
       "2 DASHES CREOLE BITTERS"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "CREOLE BITTERS TOP",
@@ -1863,7 +1802,7 @@
   },
   {
     "name": "FOREST MARGARITA",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML EVERLEAF FOREST",
       "25 ML LIME JUICE",
@@ -2069,7 +2008,7 @@
       "50 ML CHIVAS 12",
       "15 ML AMARETTO"
     ],
-    "method": null,
+    "method": "STIR AND DISCARD INTO GLS",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "ORANGE PEEL",
@@ -2120,7 +2059,7 @@
       "10 ML GRAND MARNIER",
       "25 ML BOILING WATER"
     ],
-    "method": null,
+    "method": "BUILD AND TOPPED WITH HOT WATER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -2135,7 +2074,7 @@
       "10 ML SUGAR SYRUP",
       "5 EA GRAPES"
     ],
-    "method": null,
+    "method": "MUDDLE, STIR, FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "GRAPES ON STICK",
@@ -2185,7 +2124,7 @@
       "125 ML CONCENTRATE APPLE JUICE",
       "1 UNIT SCOOP OF ICE"
     ],
-    "method": null,
+    "method": "ALL BLEND TOGETHER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -2206,18 +2145,6 @@
     "allergens": [
       "CITRUS"
     ]
-  },
-  {
-    "name": "Garnish:",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "4 OR 5 UNIT APPLES"
-    ],
-    "method": null,
-    "glassware": null,
-    "ice": null,
-    "garnish": null,
-    "allergens": []
   },
   {
     "name": "HANKY PANKY",
@@ -2301,7 +2228,7 @@
       "2.5 ML PASSION FRUIT SYRUP",
       "2.5 ML GRENADINE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN",
     "glassware": "HIGHBALL",
     "ice": "CRUSHED",
     "garnish": "ORANGE WHEEL/PINEAPPLE",
@@ -2319,7 +2246,7 @@
       "12.5 ML SUGAR SYRUP",
       "1 TOP SODA WATER"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN, TOPPED WITH SODA WATER",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "LEMON WEDGE",
@@ -2352,7 +2279,7 @@
       "1 EA BROWN SUGAR CUBE",
       "3 DASH ANGOSTURA BITTERS"
     ],
-    "method": null,
+    "method": "DISOLVE SUGAR, STIR IN THE GLASS",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "ORANGE TWIST",
@@ -2395,23 +2322,6 @@
       "CITRUS",
       "SULPHATES"
     ]
-  },
-  {
-    "name": "Ice:",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "1/2 UNIT AVOCADO",
-      "1/2 UNIT GREEN APPLE",
-      "125 ML APPLE JUICE",
-      "25 ML LIME CORDIAL",
-      "8 UNIT MINT LEAFS",
-      "1 UNIT CRUSHED ICE"
-    ],
-    "method": null,
-    "glassware": null,
-    "ice": null,
-    "garnish": null,
-    "allergens": []
   },
   {
     "name": "KEY LIME PIE",
@@ -2472,7 +2382,7 @@
       "15 ML DUBONNET RED",
       "3 DASHES VANILLA / COCOA BITTERS"
     ],
-    "method": null,
+    "method": "STIR AND DISCARD INTO GLS",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "ORANGE PEEL",
@@ -2491,7 +2401,7 @@
       "5 EA MINT LEAVES",
       "1 EA GINGER ALE"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": "CUBED / TOPPED CRUSHED",
     "garnish": "MINT SPRING & LIME",
@@ -2508,7 +2418,7 @@
       "20 ML MARASCHINO LIQUEUR",
       "20 ML LIME JUICE"
     ],
-    "method": null,
+    "method": "STIR IN MIXING GLASS",
     "glassware": "NICK & NORA",
     "ice": null,
     "garnish": "CHERRY BOTTOM OF THE GLASS",
@@ -2526,7 +2436,7 @@
       "20 ML LIMONCELLO",
       "25 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": null,
@@ -2611,7 +2521,7 @@
       "1 TOP SPARKLING WATER",
       "1 SPLASH LEMON JUICE"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "SMALL WINE GLASS",
     "ice": "CUBED",
     "garnish": "LEMON WHEEL",
@@ -2629,7 +2539,7 @@
       "1 TOP SPARKLING WATER",
       "1 SPLASH LEMON JUICE"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "BALLOON",
     "ice": "CUBED",
     "garnish": "LEMON WHEEL",
@@ -2645,7 +2555,7 @@
       "25 ML LEMON JUICE",
       "1 EA EGG WHITE"
     ],
-    "method": null,
+    "method": "DRY SHAKE, WET SHAKE, FINE STRAIN",
     "glassware": "GOBELET",
     "ice": null,
     "garnish": "LEMON PEEL EXPRESSED, BISCUIT",
@@ -2676,12 +2586,12 @@
   },
   {
     "name": "LUCKY BOTIVO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML BOTIVO",
       "1 EA LUCKY SAINT"
     ],
-    "method": null,
+    "method": "BUILD, POUR ALL INTO GLASS, SERVE WITH LUCKY SAINT BOTTLE",
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": null,
@@ -2708,7 +2618,7 @@
   },
   {
     "name": "MAHALA MOCKTAIL",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML MAHALA",
       "20 ML CINNAMON SYRUP",
@@ -2751,7 +2661,7 @@
       "125 ML CONCENTRATE ORANGE JUICE",
       "1 UNIT SCOOP OF ICE"
     ],
-    "method": null,
+    "method": "ALL BLEND TOGETHER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -2896,28 +2806,12 @@
       "45 ML FAIR QUINOA",
       "15 ML CRÈME DE CASSIS"
     ],
-    "method": null,
+    "method": "STIR IN MIXING GLASS, TOP WITH CHAMPAGNE",
     "glassware": "LONG FLUTE",
     "ice": null,
     "garnish": "LUXARDO CHERRY",
     "allergens": [
       "CITRUS"
-    ]
-  },
-  {
-    "name": "MARY MIX",
-    "category": "Alcoholic",
-    "ingredients": [
-      "700 ML WORCHESCIER SAUCE",
-      "3 SPOON DIJON MUSTARD",
-      "3 SPOON HORSERADISH SAUCE"
-    ],
-    "method": "BUILD, STIR",
-    "glassware": null,
-    "ice": null,
-    "garnish": null,
-    "allergens": [
-      "CITRUS/FISH/CELERY/MUSTARD"
     ]
   },
   {
@@ -2929,7 +2823,7 @@
       "5 ML MARASCHINO",
       "5 ML GRENADINE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "CHERRY",
@@ -3031,7 +2925,7 @@
       "1 EA EGG WHITE",
       "10 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "DRY SHAKE, WET SHAKE, FINE STRAIN",
     "glassware": "NICK & NORA",
     "ice": null,
     "garnish": "MINT LEAF",
@@ -3048,23 +2942,11 @@
       "6 EA MINT LEAVES",
       "10 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "MUDDLE MINT AND SUGAR, SHAKE AND STRAIN",
     "glassware": "JULEP CUP",
     "ice": "CRUSHED",
     "garnish": "MINT SPRING",
     "allergens": []
-  },
-  {
-    "name": "MIX SALT AND CHILLI FLAKES FOR GARNISH",
-    "category": "Alcoholic",
-    "ingredients": [],
-    "method": "SHAKE ALL AND STRAIN",
-    "glassware": "MARTINI OR ROCK",
-    "ice": null,
-    "garnish": "HALF RIM CHILLI FLAKES & SALT",
-    "allergens": [
-      "CITRUS/CHILLI"
-    ]
   },
   {
     "name": "MOCHA COCKTAIL",
@@ -3085,7 +2967,7 @@
   },
   {
     "name": "MOCK'MARGARITA",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "45 ML LIME JUICE",
       "15 ML LEMON JUICE",
@@ -3102,7 +2984,7 @@
   },
   {
     "name": "MOCKTAILS",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML MONIN ORANGE SPRITZ",
       "1 TOPPED SODA WATER"
@@ -3124,7 +3006,7 @@
       "1 SPOON WHITE SUGAR",
       "8 EA MINT LEAVES"
     ],
-    "method": null,
+    "method": "MUDDLE LIME AND SUGAR, BUILD AND STIR",
     "glassware": "HIGHBALL",
     "ice": "CRUSHED",
     "garnish": "MINT SPRING / LIME WEDGE",
@@ -3159,7 +3041,7 @@
       "5 ML AGAVE SYRUP",
       "1 TOP SODA WATER"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN, TOPPED WITH SODA WATER",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "GRAPEFRUIT",
@@ -3216,21 +3098,6 @@
     ]
   },
   {
-    "name": "Method:",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "3 EA STRAWBERRIES",
-      "1/2 EA BANANA",
-      "125 ML CRANBERRY JUICE",
-      "1 EA CRUSHED ICE"
-    ],
-    "method": "ALL BLEND TOGETHER",
-    "glassware": "HIGHBALL",
-    "ice": "CRUSHED",
-    "garnish": null,
-    "allergens": []
-  },
-  {
     "name": "NAKED & FAMOUS",
     "category": "Alcoholic",
     "ingredients": [
@@ -3266,7 +3133,7 @@
   },
   {
     "name": "NO-GIN & TONIC",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML CEDERS CLASSIC",
       "1 TOPPED ROSEMARY TONIC"
@@ -3281,7 +3148,7 @@
   },
   {
     "name": "NO-GRONI",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML MAHALA SPICED",
       "25 ML LUCANO 0",
@@ -3295,7 +3162,7 @@
   },
   {
     "name": "NOT SO COSMO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "100 ML CRANBERRY JUICE",
       "25 ML LEMON JUICE",
@@ -3388,7 +3255,7 @@
       "25 ML JAMESON ORANGE",
       "7.5 ML DOUBLE CREAM"
     ],
-    "method": null,
+    "method": "SHAKE (NO CREAM) AND DOUBLE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "CREAM TOP / GRATTED ORANGE",
@@ -3402,7 +3269,7 @@
     "ingredients": [
       "3 EA ORANGES"
     ],
-    "method": null,
+    "method": "REMOVE SKIN, ALL IN JUICER",
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": null,
@@ -3412,7 +3279,7 @@
   },
   {
     "name": "ORANGE SPRITZ",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML MONIN ORANGE SPRITZ",
       "1 TOPPED FT SODA WATER"
@@ -3471,7 +3338,7 @@
       "1 EA EGG WHITE",
       "25 ML LEMON JUICE"
     ],
-    "method": null,
+    "method": "DRY SHAKE, WET SHAKE, FINE STRAIN",
     "glassware": "GOBELET",
     "ice": null,
     "garnish": "DRY PEAR",
@@ -3524,7 +3391,7 @@
       "30 ML GRAPEFRUIT JUICE",
       "1 TOP GRAPEFRUIT SODA"
     ],
-    "method": null,
+    "method": "SHAKE ALL, FINE STRAIN AND TOP WITH SODA",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "CITRUS SALT RIM/GRAPEFRUIT WHEEL",
@@ -3542,7 +3409,7 @@
       "25 ML LIME JUICE",
       "15 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "CHERRY",
@@ -3577,7 +3444,7 @@
       "20 ML PASSION FRUIT SYRUP",
       "1 EA PASSION FRUIT"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND DOUBLE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "HALF PASSION FRUIT",
@@ -3629,7 +3496,7 @@
       "10 ML PEACH SYRUP",
       "1 TOP SPARKLING WATER"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "PEACH SLICE",
@@ -3646,7 +3513,7 @@
       "25 ML WHITE VERMOUTH",
       "10 ML ST GERMAIN"
     ],
-    "method": null,
+    "method": "STIR ALL AND STRAIN INTO MARTINI GLASS",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "DRY PEAR",
@@ -3663,7 +3530,7 @@
       "10 ML MARTEL VS",
       "10 ML LEMON JUICE"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "SMALL WINE GLASS",
     "ice": "CUBED",
     "garnish": "LEMON WHEEL",
@@ -3682,7 +3549,7 @@
       "15 ML GINGER LIQUEUR",
       "20 ML HONEY SYRUP (WITH HOT WATER)"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "ROCK",
     "ice": "LARGE CUBE",
     "garnish": "LEMON PEEL",
@@ -3715,7 +3582,7 @@
       "10 ML NOILLY PRAT",
       "12.5 ML PICKLE JUICE"
     ],
-    "method": null,
+    "method": "STIR IN MIXING GLASS",
     "glassware": "GOBELET",
     "ice": null,
     "garnish": "CORNICHON",
@@ -3748,7 +3615,7 @@
       "30 ML COCONUT MILK",
       "30 ML PINEAPPLE JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND POUR",
     "glassware": "LARGE TULIP WINE GLS",
     "ice": null,
     "garnish": "PINEAPPLE/CHERRY",
@@ -3792,7 +3659,7 @@
   },
   {
     "name": "PINK VIRGIN MOJITO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML EVERLEAF MOUNTAIN",
       "25 ML LIME JUICE",
@@ -3834,7 +3701,7 @@
       "15 ML SUGAR SYRUP",
       "3 DASHES ANGOSTURA BITTERS"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN",
     "glassware": "HIGHBALL",
     "ice": "CUBED",
     "garnish": "SEASONAL FRUIT",
@@ -3921,7 +3788,7 @@
       "15 ML ELDERFLOWER",
       "1 TOP PROSECCO"
     ],
-    "method": null,
+    "method": "MUDDLE BERRIES AND MINT, SHAKE ALL AND STRAIN, TOP WITH PROSECCO",
     "glassware": "COUPE",
     "ice": null,
     "garnish": "RASPBERRY/MINT ON THE RIM",
@@ -3954,11 +3821,11 @@
   },
   {
     "name": "RASP-BLE",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML FERAGAIA",
       "15 ML LEMON JUICE",
-      "2025-06-04 00:00:00 EA BLACKBERRIES",
+      "4 EA BLACKBERRIES",
       "1 EA GINGER ALE"
     ],
     "method": "SHAKE ALL, STRAIN, TOP WITH GINGER ALE",
@@ -4077,7 +3944,7 @@
   },
   {
     "name": "REFRESHING",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "40 ML EVERLEAF MARINE",
       "30 ML CRANBERRY JUICE",
@@ -4118,7 +3985,7 @@
       "20 ML BRIOTTET RHUBARB",
       "10 ML LILLET BLANC"
     ],
-    "method": null,
+    "method": "STIR IN MIXING GLASS",
     "glassware": "GOBELET",
     "ice": null,
     "garnish": "DRY RHUBARB",
@@ -4136,7 +4003,7 @@
       "15 ML SIPELLO",
       "15 ML APPLE JUICE"
     ],
-    "method": null,
+    "method": "SHAKE ALL, FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "DEHYDRATED RHUBARB",
@@ -4150,7 +4017,7 @@
       "25 ML MARTINI ROSSO",
       "2 DROPS ANGOSTURA BITTERS"
     ],
-    "method": null,
+    "method": "STIR IN MIXING GLASS",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -4201,7 +4068,7 @@
       "2 EA FRESH STRAWBERRIES",
       "5 ML LEMON JUICE"
     ],
-    "method": null,
+    "method": "MUDDLE STRAWBERRIES, SHAKE ALL AND FINE STRAIN",
     "glassware": "COUPETTE",
     "ice": null,
     "garnish": "HALF STRAWBERRY ON THE RIM",
@@ -4288,22 +4155,10 @@
       "25 ML DRAMBUIE",
       "2 DASHES ANGOSTURA BITTERS"
     ],
-    "method": null,
+    "method": "STIR AND DISCARD INTO GLS",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "LEMON PEEL",
-    "allergens": [
-      "CITRUS"
-    ]
-  },
-  {
-    "name": "SAME AS A MANHATTAN BUT MADE WITH WHISKY",
-    "category": "Alcoholic",
-    "ingredients": [],
-    "method": "STIR IN MIXING GLASS",
-    "glassware": "MARTINI",
-    "ice": null,
-    "garnish": "CHERRY COCKTAIL",
     "allergens": [
       "CITRUS"
     ]
@@ -4335,7 +4190,7 @@
       "2 DASHES PEYCHAUD BITTERS",
       "1 SPRAY ABSINTHE"
     ],
-    "method": null,
+    "method": "SPRAY GLASS, SOAK SUGAR WITH BITTERS, STIR IN THE GLASS",
     "glassware": "ROCK",
     "ice": "CUBED",
     "garnish": "LEMON PEEL",
@@ -4546,7 +4401,7 @@
   },
   {
     "name": "SMOKY & SPICY MULE",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML MAHALA AMBER",
       "15 ML LIME JUICE",
@@ -4603,7 +4458,7 @@
       "15 ML LIME JUICE",
       "15 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": "MINT SPRING",
@@ -4611,7 +4466,7 @@
   },
   {
     "name": "SOFT COCKTAILS - APERTIVO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML EVERLEAF MOUNTAIN",
       "25 ML LUCANO 0",
@@ -4631,7 +4486,7 @@
       "25 ML LIME JUICE",
       "15 ML AGAVE SYRUP"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND STRAIN",
     "glassware": "ROCKS",
     "ice": "CUBED",
     "garnish": "LIME SLICE",
@@ -4791,7 +4646,7 @@
       "3 EA STRAWBERRY",
       "5 EA BASIL LEAVES"
     ],
-    "method": null,
+    "method": "MUDDLE STRAWBERRY AND BASIL, SHAKE ALL AND FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "STRAWBERRY",
@@ -4825,7 +4680,7 @@
       "125 ML CRANBERRY JUICE",
       "1 UNIT CRUSHED ICE"
     ],
-    "method": null,
+    "method": "ALL BLEND TOGETHER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -4889,28 +4744,12 @@
       "20 ML LIMONCELLO",
       "25 ML SUGAR SYRUP"
     ],
-    "method": null,
+    "method": "SHAKE ALL AND FINE STRAIN",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": null,
     "allergens": [
       "CITRUS"
-    ]
-  },
-  {
-    "name": "TERRACE SPECIALS",
-    "category": "Alcoholic",
-    "ingredients": [
-      "50 ML BASE",
-      "100 ML PROSECCO",
-      "1 TOP SPARKLING WATER"
-    ],
-    "method": "BUILD",
-    "glassware": "LARGE WINE GLASS",
-    "ice": "CUBED",
-    "garnish": null,
-    "allergens": [
-      "SULPHATES"
     ]
   },
   {
@@ -5006,7 +4845,7 @@
       "125 ML PINEAPPLE JUICE",
       "1 UNIT SCOOP OF ICE"
     ],
-    "method": null,
+    "method": "ALL BLEND TOGETHER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -5076,7 +4915,7 @@
       "1 SCOOP CRUSHED ICE",
       "1/4 UNIT AVOCADO"
     ],
-    "method": null,
+    "method": "ALL BLEND TOGETHER",
     "glassware": null,
     "ice": null,
     "garnish": null,
@@ -5092,7 +4931,7 @@
       "10 ML LEMON JUICE",
       "3 EA GRAPPES"
     ],
-    "method": null,
+    "method": "SHAKEN AND STRAIN ON ICE",
     "glassware": "WINE GLASS",
     "ice": "CUBED",
     "garnish": "BUNCH OF GRAPES",
@@ -5149,7 +4988,6 @@
     "ice": "STRAIGHT UP/LARGE CUBE",
     "garnish": "CHOCOLATE POWDER",
     "allergens": [
-      "CITRUS",
       "EGG"
     ]
   },
@@ -5189,7 +5027,7 @@
   },
   {
     "name": "UN-FASHIONED",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "40 ML LYRE'S AMERICAN MALT",
       "20 ML CROSSIP DANDY SMOKE",
@@ -5220,7 +5058,7 @@
   },
   {
     "name": "VANILLA SOUR",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML MAHALA SPICED",
       "20 ML LEMON JUICE",
@@ -5272,7 +5110,7 @@
   },
   {
     "name": "VIRGIN MARY",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML MARY MIX",
       "175 ML TOMATO JUICE",
@@ -5289,7 +5127,7 @@
   },
   {
     "name": "VIRGIN MOJITO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "25 ML LIME JUICE",
       "25 ML SUGAR SYRUP",
@@ -5306,7 +5144,7 @@
   },
   {
     "name": "VIRGIN PEACH MOJITO",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "1/2 EA PEACH",
       "25 ML PEACH SYRUP",
@@ -5340,19 +5178,6 @@
     ]
   },
   {
-    "name": "WARM UP THE GLASS WITH THE STEAMER",
-    "category": "Alcoholic",
-    "ingredients": [],
-    "method": "BUILD AND TOPPED WITH HOT WATER",
-    "glassware": "NICK AND NORA",
-    "ice": "NO",
-    "garnish": "DRIED ORANGE",
-    "allergens": [
-      "CITRUS",
-      "SULPHITES"
-    ]
-  },
-  {
     "name": "WEESKI COCKTAIL",
     "category": "Alcoholic",
     "ingredients": [
@@ -5361,7 +5186,7 @@
       "7.5 ML COINTREAU",
       "1 DASH ORANGE BITTERS"
     ],
-    "method": null,
+    "method": "STIR ALL INGREDIENTS, STRAIN INTO GLASS",
     "glassware": "MARTINI",
     "ice": null,
     "garnish": "ORANGE PEEL RIM",
@@ -5432,7 +5257,7 @@
       "25 ML LILLET BLANC",
       "50 ML SPARKLING WATER"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "WINE GLASS",
     "ice": "CUBED",
     "garnish": "LEMON WHEEL",
@@ -5448,7 +5273,7 @@
       "50 ML DONA ANTONIA WHITE PORT",
       "1 EA F&S TONIC LIGHT"
     ],
-    "method": null,
+    "method": "BUILD",
     "glassware": "HIGHBALL",
     "ice": null,
     "garnish": "LEMON WHEEL",
@@ -5476,7 +5301,7 @@
   },
   {
     "name": "WILD COAST COOLER",
-    "category": "Alcoholic",
+    "category": "Non-alcoholic",
     "ingredients": [
       "50 ML FERAGAIA",
       "50 ML PINEAPPLE JUICE",
@@ -5491,17 +5316,5 @@
       "CITRUS",
       "SULPHITES"
     ]
-  },
-  {
-    "name": "picture",
-    "category": "Non-alcoholic",
-    "ingredients": [
-      "5 UNIT CARROTS"
-    ],
-    "method": null,
-    "glassware": null,
-    "ice": null,
-    "garnish": null,
-    "allergens": []
   }
 ]
