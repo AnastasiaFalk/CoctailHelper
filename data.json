@@ -780,7 +780,7 @@
       "50 ML GIN",
       "25 ML LEMON JUICE",
       "15 ML SUGAR SYRUP",
-      "15 ML CRÃÂME DE MURE"
+      "15 ML CRÃÂÃÂME DE MURE"
     ],
     "method": "SHAKE AND TOP",
     "glassware": "ROCK",
@@ -1627,7 +1627,7 @@
     "ingredients": [
       "50 ML OLMECA BLANCO",
       "25 ML LIME JUICE",
-      "15 ML CRÃÂME DE CASSIS",
+      "15 ML CRÃÂÃÂME DE CASSIS",
       "1 TOP GINGER ALE"
     ],
     "method": "SHAKE, STRAIN, TOP",
@@ -2804,7 +2804,7 @@
     "ingredients": [
       "100 ML CHAMPAGNE",
       "45 ML FAIR QUINOA",
-      "15 ML CRÃÂME DE CASSIS"
+      "15 ML CRÃÂÃÂME DE CASSIS"
     ],
     "method": "STIR IN MIXING GLASS, TOP WITH CHAMPAGNE",
     "glassware": "LONG FLUTE",
@@ -4016,7 +4016,7 @@
       "20 ML COINTREAU",
       "15 ML LIME JUICE",
       "75 ML ORANGE JUICE",
-      "5 ML CRÃÂME DE CASSIS",
+      "5 ML CRÃÂÃÂME DE CASSIS",
       "5 ML GRENADINE"
     ],
     "method": "SHAKE INGREDIENTS, TOP, ADD CRUSHED ICE, FLOAT",
@@ -4209,7 +4209,7 @@
       "10 EA MINT LEAVES"
     ],
     "method": "SHAKE AND STRAIN",
-    "glassware": "CAFÃÂ ROCK / CLUB WATER GLS",
+    "glassware": "CAFÃÂÃÂ ROCK / CLUB WATER GLS",
     "ice": "CRUSHED ICE",
     "garnish": "MINT SPRING",
     "allergens": [
@@ -4724,21 +4724,6 @@
     ]
   },
   {
-    "name": "TEST",
-    "category": "Alcoholic",
-    "ingredients": [
-      "50 GIN"
-    ],
-    "method": "TEST",
-    "glassware": "TEST",
-    "ice": "CUBED",
-    "garnish": "ORANGE PEEL",
-    "allergens": [
-      "DAIRY",
-      "CHILLI"
-    ]
-  },
-  {
     "name": "TEST2",
     "category": "Non-alcoholic",
     "ingredients": [
@@ -4792,7 +4777,7 @@
     "ingredients": [
       "40 ML KOKO KANU",
       "20 ML HAVANA 7",
-      "30 ML CRÃÂME DE CACAO",
+      "30 ML CRÃÂÃÂME DE CACAO",
       "15 ML LEMON JUICE",
       "1 EA EGG WHITE"
     ],
