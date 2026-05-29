@@ -693,7 +693,7 @@
             ${c.allergens && c.allergens.length ? `<span class="meta-pill" style="color:#e05c5c99">⚠ allergens</span>` : ''}
           </div>
         </div>
-        <span class="category-badge ${isAlc ? 'badge-alc' : 'badge-non'}">${isAlc ? 'ALC' : 'N/A'}</span>
+        <span class="category-badge ${isAlc ? 'badge-alc' : 'badge-non'}">${isAlc ? 'ALC' : 'NON-ALC'}</span>
       `;
 
       item.addEventListener('click', () => openSpec(c));
